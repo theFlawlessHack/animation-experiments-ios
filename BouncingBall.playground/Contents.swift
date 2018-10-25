@@ -6,14 +6,14 @@ import PlaygroundSupport
 class MyViewController : UIViewController {
     override func loadView() {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .cyan
 
-        let label = UILabel()
-        label.frame = CGRect(x: 150, y: 200, width: 200, height: 20)
-        label.text = "Hello World!"
-        label.textColor = .black
+        let button = UIButton(frame: CGRect(x: 110, y: 120, width: 150, height: 50))
+        button.backgroundColor = .magenta
+        button.setTitle("Drop the ball", for: .normal)
+        button.setTitleColor(.white , for: .normal)
         
-        view.addSubview(label)
+        view.addSubview(button)
         self.view = view
     }
 }
