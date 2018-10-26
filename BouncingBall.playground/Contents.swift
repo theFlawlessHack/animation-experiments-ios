@@ -4,6 +4,7 @@ import UIKit
 import PlaygroundSupport
 
 class MyViewController : UIViewController {
+
     override func loadView() {
         let view = UIView()
         view.backgroundColor = .cyan
@@ -17,7 +18,13 @@ class MyViewController : UIViewController {
         button.layer.cornerRadius = 25
         button.layer.borderWidth = 3
         button.layer.borderColor = UIColor.white.cgColor
+        button.addTarget(self, action: #selector(animateBall), for: .touchUpInside)
         
+        view.addSubview(button)
+        self.view = view
+    }
+    
+    @objc func animateBall() {
         let image = UIImage(named: "beach-ball")
         let imageView = UIImageView(frame: CGRect(x: 155 , y: 200, width: 75, height: 75))
         imageView.image = image
@@ -45,8 +52,6 @@ class MyViewController : UIViewController {
         scaleXAnimation.duration = 1.0
         scaleXAnimation.repeatCount = .infinity
         
-        
-        
         let scaleYAnimation: CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "transform.scale.y")
         let scaleYValues = [0.75, 1, 0.85]
         translation.values = scaleYValues
@@ -62,9 +67,7 @@ class MyViewController : UIViewController {
         imageView.layer.add(scaleYAnimation, forKey: "scaleY")
         imageView.layer.add(translation, forKey: "trans")
         
-        view.addSubview(button)
         view.addSubview(imageView)
-        self.view = view
     }
 }
 // Present the view controller in the Live View window
