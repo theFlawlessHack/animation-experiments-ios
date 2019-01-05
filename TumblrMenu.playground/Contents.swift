@@ -13,8 +13,25 @@ class MyViewController : UIViewController {
         label.text = "Hello World!"
         label.textColor = .black
         
-        view.addSubview(label)
+        let button = UIButton()
+        button.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
+        button.backgroundColor = UIColor.cyan
+        button.addTarget(self, action: #selector(showMenu), for: .touchUpInside)
+        
+        view.addSubview(button)
         self.view = view
+    }
+    
+    @objc func showMenu() {
+        let menuView = UIView()
+        menuView.frame = self.view.frame
+        menuView.backgroundColor = UIColor.blue.withAlphaComponent(0.65)
+        menuView.alpha = 0.0
+        self.view.addSubview(menuView)
+        
+        UIView.animate(withDuration: 1.5) {
+            menuView.alpha = 1.0
+        }
     }
 }
 // Present the view controller in the Live View window
