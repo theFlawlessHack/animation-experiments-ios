@@ -4,6 +4,9 @@ import UIKit
 import PlaygroundSupport
 
 class MyViewController : UIViewController {
+    
+    let menuView = UIView()
+    
     override func loadView() {
         let view = UIView()
         view.backgroundColor = .white
@@ -22,15 +25,25 @@ class MyViewController : UIViewController {
         self.view = view
     }
     
+    @objc func dismissMenu() {
+        UIView.animate(withDuration: 0.75) {
+            self.menuView.alpha = 0.0
+        }
+    }
+    
     @objc func showMenu() {
-        let menuView = UIView()
         menuView.frame = self.view.frame
         menuView.backgroundColor = UIColor.blue.withAlphaComponent(0.65)
         menuView.alpha = 0.0
+        
+        // add tap gesture to menuview for dismissal
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissMenu))
+        menuView.addGestureRecognizer(tap)
+        
         self.view.addSubview(menuView)
         
-        UIView.animate(withDuration: 1.5) {
-            menuView.alpha = 1.0
+        UIView.animate(withDuration: 1.0) {
+            self.menuView.alpha = 1.0
         }
     }
 }
